@@ -34,14 +34,14 @@
   function countdownPresentation(state, previewEnabled) {
     if (state.status === "active") return {
       hidden: false, mode: "active",
-      text: `Prix de lancement : ${state.days} jour${state.days > 1 ? "s" : ""} restant${state.days > 1 ? "s" : ""}`
+      text: `${state.days} jour${state.days > 1 ? "s" : ""} restant${state.days > 1 ? "s" : ""} pour bénéficier du prix de lancement`
     };
     if (state.status === "ended") return {
       hidden: false, mode: "ended", text: "Période de lancement terminée"
     };
     return {
       hidden: previewEnabled !== true, mode: "preview",
-      text: previewEnabled === true ? "Aperçu inactif · 60 jours" : ""
+      text: previewEnabled === true ? "Aperçu inactif · 60 jours restants pour bénéficier du prix de lancement" : ""
     };
   }
   function render() {
