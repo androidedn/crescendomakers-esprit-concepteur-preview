@@ -31,14 +31,27 @@
     const days = Math.max(0, 60 - elapsed);
     return { status: days ? "active" : "ended", days };
   }
+  function countdownPresentation(state, previewEnabled) {
+    if (state.status === "active") return {
+      hidden: false, mode: "active",
+      text: `Prix de lancement : ${state.days} jour${state.days > 1 ? "s" : ""} restant${state.days > 1 ? "s" : ""}`
+    };
+    if (state.status === "ended") return {
+      hidden: false, mode: "ended", text: "Période de lancement terminée"
+    };
+    return {
+      hidden: previewEnabled !== true, mode: "preview",
+      text: previewEnabled === true ? "Aperçu inactif · 60 jours" : ""
+    };
+  }
   function render() {
     const state = launchState(root.EC_LAUNCH_CONFIG);
+    const presentation = countdownPresentation(state, root.EC_LAUNCH_CONFIG?.previewWhenInactive);
     const nodes = document.querySelectorAll("[data-launch-countdown]");
     for (const node of nodes) {
-      node.hidden = !["active", "ended"].includes(state.status);
-      node.textContent = state.status === "active"
-        ? `Prix de lancement : ${state.days} jour${state.days > 1 ? "s" : ""} restant${state.days > 1 ? "s" : ""}`
-        : state.status === "ended" ? "Période de lancement terminée" : "";
+      node.hidden = presentation.hidden;
+      node.dataset.launchMode = presentation.mode;
+      node.textContent = presentation.text;
     }
     const price = document.querySelector(".v5-price-number");
     if (price) {
@@ -47,7 +60,7 @@
     }
   }
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = { launchState };
+    module.exports = { launchState, countdownPresentation };
   }
   if (typeof document !== "undefined") {
     render();
