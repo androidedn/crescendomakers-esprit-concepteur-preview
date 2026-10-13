@@ -1,0 +1,35 @@
+/* Interfaces de démonstration : aucun module de paiement ou collecte tiers. */
+.demo-page{margin:0;background:#f4f5f7;color:#27384e;font:1rem/1.6 Arial,Helvetica,sans-serif}
+.demo-wrap{width:min(1120px,calc(100% - 2rem));margin:auto}
+.demo-header{padding:18px 0;background:#fff;border-bottom:1px solid #d9e1eb}
+.demo-header .demo-wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.demo-logo{width:160px;height:80px;object-fit:contain}
+.demo-page a,.demo-card a,.demo-legal-nav a{color:#23497c;text-underline-offset:3px;overflow-wrap:anywhere}
+.demo-page h1{font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.2;color:#17365d}
+.demo-page h2{font-size:1.3rem;color:#17365d}.demo-page h3{font-size:1.05rem;color:#23497c}
+.demo-main{padding:32px 0 48px}.demo-grid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,.85fr);gap:24px;align-items:start}
+.demo-card{min-width:0;background:white;border:1px solid #d9e1eb;border-radius:18px;padding:clamp(18px,3vw,28px);overflow-wrap:anywhere}
+.demo-card+.demo-card{margin-top:20px}.demo-card p:last-child{margin-bottom:0}
+.demo-banner{border-left:4px solid #d98400;background:#fff8e2;border-radius:10px;padding:14px 18px;margin:0 0 24px}
+.demo-note{font-size:.9rem;color:#4b5c70;line-height:1.6}
+.demo-field{display:grid;gap:6px;margin:16px 0;font-weight:700;color:#23497c}
+.demo-field input{width:100%;min-width:0;box-sizing:border-box;border:1px solid #a5b5c9;border-radius:8px;padding:12px;font:inherit;color:#27384e;background:#fff}
+.demo-choice{display:flex;align-items:flex-start;gap:10px;margin:16px 0;line-height:1.5;color:#27384e}
+.demo-choice input{flex:0 0 auto;width:20px;height:20px;margin:3px 0 0;accent-color:#23497c}
+.demo-choice span{min-width:0;overflow-wrap:anywhere}
+.demo-page fieldset{min-width:0;border:0;padding:0;margin:20px 0}.demo-page legend{font-weight:700;color:#17365d}
+.demo-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+.demo-button{display:inline-block;min-height:44px;border:0;border-radius:8px;padding:12px 18px;font:700 1rem/1.4 Arial,Helvetica,sans-serif;background:#23497c;color:white;cursor:pointer;text-align:center}
+.demo-button:hover{background:#17365d}.demo-button:disabled{background:#e0e5ec;color:#4b5c70;cursor:not-allowed}
+.demo-secondary{background:#eaf3ff;color:#17365d}.demo-secondary:hover{background:#d5e5fb}
+.demo-status:not(:empty){margin:16px 0 0;padding:14px;border-left:4px solid #2f75b5;background:#eaf3ff;color:#17365d;border-radius:8px}
+.demo-price{font-size:2.6rem;font-weight:900;color:#23497c}
+.demo-docs{display:flex;flex-wrap:wrap;gap:10px 18px;margin:16px 0}
+.demo-page [hidden],.demo-card [hidden]{display:none!important}
+.demo-page details{border-top:1px solid #d9e1eb;padding:14px 0}.demo-page summary{cursor:pointer;color:#23497c;font-weight:700}
+.demo-page a:focus-visible,.demo-button:focus-visible,.demo-card input:focus-visible{outline:3px solid #d98400;outline-offset:3px}
+.demo-newsletter{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}.demo-newsletter h2{margin-top:0}
+.demo-legal-nav{display:flex;gap:12px 20px;flex-wrap:wrap;margin:12px 0}
+.demo-footer{padding:26px 0;background:#fff;border-top:1px solid #d9e1eb}
+@media(max-width:800px){.demo-grid,.demo-newsletter{grid-template-columns:1fr}.demo-header .demo-wrap{gap:8px}.demo-logo{width:120px;height:60px}}
+@media print{.demo-header,.demo-footer,.demo-banner,.demo-actions{display:none}.demo-grid{display:block}.demo-card{break-inside:avoid}}
