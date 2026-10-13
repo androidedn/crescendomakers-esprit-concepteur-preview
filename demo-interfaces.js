@@ -38,7 +38,7 @@
     if(!form.reportValidity())return;
     const method=button.dataset.paymentDemo;
     const access=form.querySelector("[name=access]:checked").value==="early"?"accès anticipé demandé":"accès après le délai légal choisi";
-    status.textContent="Choix "+method+" simulé — "+access+". Aucun paiement, aucune commande ni compte créé ; aucun champ transmis ou conservé. Dans le parcours réel, la validation du paiement devra être suivie d’une confirmation sur support durable et de l’ouverture de l’accès selon les conditions applicables.";
+    status.textContent="Choix "+method+" simulé — "+access+". Aucun paiement n’a été effectué, aucune commande n’a été passée et aucun compte n’a été créé. Aucun champ n’a été transmis ni conservé. Dans le parcours réel, la validation du paiement devra être suivie d’une confirmation sur support durable et de l’ouverture de l’accès selon les conditions applicables.";
     status.focus();
   }));
 })();
