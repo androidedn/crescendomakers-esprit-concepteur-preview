@@ -3,9 +3,14 @@
   "use strict";
   const newsletter = document.querySelector("#newsletter-demo");
   if(newsletter){
+    const nickname=newsletter.querySelector("[name=nickname]");
+    const validateNickname=()=>nickname.setCustomValidity(nickname.value.trim()?"":"Indique ton prénom ou ton pseudo.");
+    nickname.addEventListener("input",validateNickname);
     newsletter.addEventListener("submit", event => event.preventDefault());
     document.querySelector("#newsletter-demo-submit").addEventListener("click",()=>{
       const status=document.querySelector("#newsletter-demo-status");
+      nickname.value=nickname.value.trim();
+      validateNickname();
       if(!newsletter.reportValidity())return;
       if(!newsletter.querySelector("[name=infos]").checked&&!newsletter.querySelector("[name=tips]").checked){
         status.textContent="Choisis au moins un type d’e-mail pour tester cette inscription.";return;
