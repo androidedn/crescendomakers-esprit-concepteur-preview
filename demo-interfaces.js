@@ -1,6 +1,20 @@
 /* Démonstration locale : aucune requête réseau, aucun stockage des champs. */
 (function(){
   "use strict";
+  const backTop = document.querySelector(".v5-back-to-top");
+  if(backTop){
+    backTop.classList.add("v5-back-to-top--floating");
+    const updateBackTop=()=>{backTop.hidden=window.scrollY<Math.max(window.innerHeight,640);};
+    let backTopScheduled=false;
+    window.addEventListener("scroll",()=>{
+      if(backTopScheduled)return;
+      backTopScheduled=true;
+      window.requestAnimationFrame(()=>{updateBackTop();backTopScheduled=false;});
+    },{passive:true});
+    window.addEventListener("resize",updateBackTop);
+    backTop.addEventListener("click",()=>document.body.focus({preventScroll:true}));
+    updateBackTop();
+  }
   const newsletter = document.querySelector("#newsletter-demo");
   if(newsletter){
     const nickname=newsletter.querySelector("[name=nickname]");
