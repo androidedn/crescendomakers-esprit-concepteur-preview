@@ -1,6 +1,50 @@
 /* Démonstration locale : aucune requête réseau, aucun stockage des champs. */
 (function(){
   "use strict";
+  const readingCta=document.querySelector(".v5-reading-cta");
+  if(readingCta){
+    const benefits=document.querySelector("#benefices");
+    const footer=document.querySelector(".ec-footer");
+    const newsletterSection=document.querySelector("#newsletter");
+    const orderLinks=[...document.querySelectorAll('a[href="./commande-demo.html"]')];
+    document.body.classList.add("v5-reading-enabled");
+    readingCta.querySelector("a").addEventListener("click",()=>{
+      document.getElementById("offre").focus({preventScroll:true});
+    });
+    const intersects=element=>{
+      const rect=element.getBoundingClientRect();
+      return rect.bottom>0&&rect.top<window.innerHeight;
+    };
+    const updateReadingCta=()=>{
+      const newsletterActive=newsletterSection?.contains(document.activeElement);
+      const visible=benefits.getBoundingClientRect().bottom<0
+        &&!intersects(footer)&&!intersects(newsletterSection)
+        &&!orderLinks.some(intersects)&&!newsletterActive&&window.innerHeight>500;
+      // Ne pas faire disparaître un lien pendant son utilisation au clavier.
+      const keepFocus=readingCta.contains(document.activeElement);
+      readingCta.hidden=!(visible||keepFocus);
+      document.body.classList.toggle("v5-has-reading-cta",!readingCta.hidden);
+    };
+    let scheduled=false;
+    const schedule=()=>{
+      if(scheduled)return;
+      scheduled=true;
+      window.requestAnimationFrame(()=>{scheduled=false;updateReadingCta();});
+    };
+    window.addEventListener("scroll",schedule,{passive:true});
+    window.addEventListener("resize",schedule);
+    document.addEventListener("focusin",schedule);
+    document.addEventListener("focusout",schedule);
+    document.addEventListener("toggle",schedule,true);
+    updateReadingCta();
+  }
+  const revealDetails=()=>{
+    const id=window.location.hash.slice(1);
+    const target=id&&document.getElementById(id);
+    if(target?.tagName==="DETAILS")target.open=true;
+  };
+  window.addEventListener("hashchange",revealDetails);
+  revealDetails();
   const backTop = document.querySelector(".v5-back-to-top");
   if(backTop){
     backTop.classList.add("v5-back-to-top--floating");
