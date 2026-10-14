@@ -6,8 +6,8 @@
     const nickname=newsletter.querySelector("[name=nickname]");
     const validateNickname=()=>nickname.setCustomValidity(nickname.value.trim()?"":"Indique ton prénom ou ton pseudo.");
     nickname.addEventListener("input",validateNickname);
-    newsletter.addEventListener("submit", event => event.preventDefault());
-    document.querySelector("#newsletter-demo-submit").addEventListener("click",()=>{
+    newsletter.addEventListener("submit", event => {
+      event.preventDefault();
       const status=document.querySelector("#newsletter-demo-status");
       nickname.value=nickname.value.trim();
       validateNickname();
